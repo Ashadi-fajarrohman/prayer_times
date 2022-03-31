@@ -9,7 +9,9 @@ def dms_to_dd(d, m, s):
 def dd_to_dms(dd):
     mnt, sec = divmod(dd * 3600, 60)
     deg, mnt = divmod(mnt, 60)
-    return deg, mnt, sec
+    if sec > 30:
+        mnt = mnt+1
+    return deg, mnt+2
 
 
 lintang = dms_to_dd(-6, -19, 0)
@@ -23,6 +25,7 @@ kwd = (bujur - bd) / 15  # koreksi waktu daerah
 
 # sholat dzuhur
 dzuhur = mp - kwd
+print(dd_to_dms(dzuhur))
 # print(dzuhur)
 
 # sholat ashar
@@ -80,3 +83,5 @@ t = degrees(acos(cos_t))
 
 duha = mp - (t / 15) - kwd
 print(dd_to_dms(duha))
+
+# waktu dengan ihtiyat
